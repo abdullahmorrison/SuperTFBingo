@@ -1,14 +1,14 @@
 <template>
   <footer>
-    <a href="mailto:abdullahmorrison@gmail.com" class="link" target="__blank">
+    <a href="mailto:abdullahmorrison@gmail.com" class="link" target="_blank">
       <img src="../assets/footer/emailIcon.svg" alt="Email Icon">
       Contact Dev
     </a>
-    <a href="https://github.com/abdullahmorrison" class="link" target="__blank">
+    <a href="https://github.com/abdullahmorrison" class="link" target="_blank">
       <img src="../assets/footer/gitHubLogo.svg" alt="GitHub Logo">
       View Git Repo
     </a>
-    <a href="https://ko-fi.com/abdullahmorrison" class="link" target="__blank">
+    <a href="https://ko-fi.com/abdullahmorrison" class="link" target="_blank">
       <img src="../assets/footer/coffeeIcon.svg" alt="Coffee Icon">
       Buy Me a Coffee :)
     </a>
