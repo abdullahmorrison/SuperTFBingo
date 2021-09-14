@@ -4,8 +4,10 @@
 
 <script>
 export default {
-  name: "Board"
-};
+    name: 'Footer'
+}
 </script>
 
-<style scoped></style>
+<style>
+
+</style>

@@ -4,8 +4,10 @@
 
 <script>
 export default {
-  name: "Board"
-};
+    name: 'Chip'
+}
 </script>
 
-<style scoped></style>
+<style>
+
+</style>
