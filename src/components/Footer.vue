@@ -4,7 +4,7 @@
       <img src="../assets/footer/emailIcon.svg" alt="Email Icon">
       Contact Dev
     </a>
-    <a href="https://github.com/abdullahmorrison" class="link" target="_blank">
+    <a href="https://github.com/abdullahmorrison/SuperTFBingo" class="link" target="_blank">
       <img src="../assets/footer/gitHubLogo.svg" alt="GitHub Logo">
       View Git Repo
     </a>
@@ -38,5 +38,10 @@ export default {
   }
   img{
     width: 35px
+  }
+  a{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
   }
 </style>
