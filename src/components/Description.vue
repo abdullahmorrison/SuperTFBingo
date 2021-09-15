@@ -24,8 +24,6 @@
     <h3 style="color: red">Note:</h3>
     <p>
       Progress is not saved. Refreshing will cause the board to reset.
-      <br>
-      Also, use Google Chrome if you want to see some of the tile images animate.
     </p>
   </div>
 </template>
@@ -40,7 +38,10 @@ export default {
   .instructions{
     background: white;
     padding: 20px;
-    width: 20vw;
-    margin: 20px auto;
+    width: 300px;
+    margin: 20px;
+  }
+  p{
+    margin-bottom: 10px;
   }
 </style>
