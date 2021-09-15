@@ -51,7 +51,55 @@ export default {
   },
   methods: {
     checkWin(){
-      
+      let chips = 0
+      //*Check horizontal win
+      for (var i = 0; i < this.boardPieces.length; i++) {
+        for (var j = 0; j < this.boardPieces[i].length; j++) {
+          //checking the row
+          //console.log(this.boardPieces[i][j])
+          if (this.boardPieces[i][j].clicked == true) {
+            chips++;
+          }
+        }
+        if (chips == this.boardPieces.length) {
+          //checking for horizonal win
+          alert("BINGO")
+        }
+        chips = 0;
+      }
+      //*Check vertical win
+      for (i = 0; i < this.boardPieces.length; i++) {
+        for (j = 0; j < this.boardPieces.length; j++) {
+          if (this.boardPieces[j][i].clicked == true) {
+            chips++;
+          }
+        }
+        if (chips == this.boardPieces.length) {//checking for vertical win
+          alert("BINGO")
+        }
+        chips = 0;
+      }
+      //*Check top-left to bottom-right diagonal win
+      for (i = 0; i < this.boardPieces.length; i++) {
+        if (this.boardPieces[i][i].clicked == true) {
+          chips++;
+        }
+      }
+      if (chips == this.boardPieces.length) {//checking for diagonal win
+        alert("BINGO")
+      }
+      chips = 0;
+      //*Check top-right to bottom-left diagonal win
+      for (i = 0; i < this.boardPieces.length; i++) {
+        if (this.boardPieces[i][this.boardPieces.length-1-i].clicked == true) {
+          
+          chips++;
+        }
+      }
+      if (chips == this.boardPieces.length) {//checking for diagonal win
+        alert("BINGO")
+      }
+      chips = 0;
     }
   },
   data(){
