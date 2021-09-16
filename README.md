@@ -1,24 +1,4 @@
-# supertfbingo
+# SuperTF Bingo
+This is a bingo about the [Twitch Streamer, SuperTF](https://www.twitch.tv/supertf "SuperTF's Twitch Channel"). 
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This was made to learn VueJS. MVP done the 3 days.
