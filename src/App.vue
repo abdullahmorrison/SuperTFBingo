@@ -1,9 +1,9 @@
 <template>
-  <Modal :newGame="newGame"/>
+  <Modal v-show="bingo" @newGame="bingo=false"/>
   <Nav/>
   <main class="game">
     <Description/>
-    <Board/>
+    <Board @bingo="bingo=true"/>
   </main>
   <Footer/>
 </template>
@@ -23,6 +23,11 @@ export default {
     Description,
     Board,
     Footer
+  },
+  data(){
+    return{
+      bingo: false //used to display the modal
+    }
   }
 }
 </script>

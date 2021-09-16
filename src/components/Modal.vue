@@ -6,7 +6,7 @@
                 Do You Want to Play Again?
             </div>
             <div className="modal-footer">
-                <button id="modal-footer-new"><h3>New Game</h3></button>
+                <button id="modal-footer-new" @click="$emit('newGame')"><h3>New Game</h3></button>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-
+    emits: ['newGame']
 }
 </script>
 

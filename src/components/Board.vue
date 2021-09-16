@@ -63,7 +63,8 @@ export default {
         }
         if (chips == this.boardPieces.length) {
           //checking for horizonal win
-          alert("BINGO")
+          this.$emit('bingo')
+          this.newGame()
         }
         chips = 0;
       }
@@ -75,7 +76,8 @@ export default {
           }
         }
         if (chips == this.boardPieces.length) {//checking for vertical win
-          alert("BINGO")
+          this.$emit('bingo')
+          this.newGame()
         }
         chips = 0;
       }
@@ -86,7 +88,8 @@ export default {
         }
       }
       if (chips == this.boardPieces.length) {//checking for diagonal win
-        alert("BINGO")
+        this.$emit('bingo')
+        this.newGame()
       }
       chips = 0;
       //*Check top-right to bottom-left diagonal win
@@ -97,11 +100,20 @@ export default {
         }
       }
       if (chips == this.boardPieces.length) {//checking for diagonal win
-        alert("BINGO")
+        this.$emit('bingo')
+        this.newGame()
       }
       chips = 0;
+    },
+    newGame(){
+      for(var i=0; i<this.boardPieces.length; i++){
+        for(var j=0; j<this.boardPieces[i].length; j++){
+          this.boardPieces[i][j].clicked=false;
+        }
+      }
     }
   },
+  emits: ['bingo'],
   data(){
     return{
       boardPieces: [
