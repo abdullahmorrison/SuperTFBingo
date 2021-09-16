@@ -1,4 +1,5 @@
 <template>
+  <Modal :newGame="newGame"/>
   <Nav/>
   <main class="game">
     <Description/>
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+import Modal from './components/Modal.vue'
 import Nav from './components/Nav.vue'
 import Description from './components/Description.vue'
 import Board from './components/Board.vue'
@@ -16,6 +18,7 @@ import Footer from './components/Footer.vue'
 export default {
   name: 'App',
   components: {
+    Modal,
     Nav,
     Description,
     Board,
