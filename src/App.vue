@@ -34,9 +34,24 @@ body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .game{
-  min-height: 90vh;
-  display: flex;
-  justify-content: center;
-    flex-wrap: wrap;
+  min-height: 650px;
+
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+@media (max-width: 1280px){
+  .game{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media (min-width: 1280px){
+  .game{
+    height: 95vh;
+  }
 }
 </style>
