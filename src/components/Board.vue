@@ -300,4 +300,17 @@ td:hover{
   background: #f0a759;
   cursor: pointer;
 }
+@media (max-width: 620px){
+  table{
+    width: 90vw;
+  }
+}
+@media (max-width: 450px){
+  td{
+    font-size: x-small;
+  }
+  img{
+    width: 30px;
+  }
+}
 </style>

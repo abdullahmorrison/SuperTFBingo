@@ -26,4 +26,13 @@ export default {
     position: absolute; /**overlapping the chip on each board tile */
     margin-left: 10px /**centering the chip in the middle of the board tile */
 }
+@media (max-width: 620px){
+  .chip{
+    width: 50px;
+    height: 50px;
+  }
+  .chip img{
+    width: 35px;
+  }
+}
 </style>
