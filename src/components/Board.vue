@@ -64,7 +64,10 @@ export default {
         if (chips == this.boardPieces.length) {
           //checking for horizonal win
           this.$emit('bingo')
-          this.newGame()
+          setTimeout(() => {
+            //so it shows the win before reseting
+            this.newGame()
+          }, 500);
         }
         chips = 0;
       }
@@ -77,7 +80,10 @@ export default {
         }
         if (chips == this.boardPieces.length) {//checking for vertical win
           this.$emit('bingo')
-          this.newGame()
+          setTimeout(() => {
+            //so it shows the win before reseting
+            this.newGame()
+          }, 500);
         }
         chips = 0;
       }
@@ -89,7 +95,10 @@ export default {
       }
       if (chips == this.boardPieces.length) {//checking for diagonal win
         this.$emit('bingo')
-        this.newGame()
+        setTimeout(() => {
+            //so it shows the win before reseting
+            this.newGame()
+          }, 500);
       }
       chips = 0;
       //*Check top-right to bottom-left diagonal win
@@ -101,7 +110,10 @@ export default {
       }
       if (chips == this.boardPieces.length) {//checking for diagonal win
         this.$emit('bingo')
-        this.newGame()
+        setTimeout(() => {
+            //so it shows the win before reseting
+            this.newGame()
+          }, 500);
       }
       chips = 0;
     },
