@@ -38,8 +38,8 @@ export default {
   .instructions{
     background: white;
     padding: 20px;
-    width: 300px;
     margin: 20px;
+    max-width: 55ch;
   }
   p{
     margin-bottom: 10px;

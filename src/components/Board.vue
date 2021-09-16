@@ -274,13 +274,13 @@ export default {
 <style scoped>
 table{
   margin: 20px;
+  width: 600px;
 }
 td{
   background: white;
   width: 100px;
   height: 100px;
-
-
+  padding: 5px;
   font-size: small;
   text-align: center;
 }
