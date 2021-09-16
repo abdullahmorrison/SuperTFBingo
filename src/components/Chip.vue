@@ -30,6 +30,7 @@ export default {
   .chip{
     width: 50px;
     height: 50px;
+    margin: 0;
   }
   .chip img{
     width: 35px;

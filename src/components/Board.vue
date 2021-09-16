@@ -304,6 +304,10 @@ td:hover{
   table{
     width: 90vw;
   }
+  td{
+    height: 50px;
+    width: 50px;
+  }
 }
 @media (max-width: 450px){
   td{
