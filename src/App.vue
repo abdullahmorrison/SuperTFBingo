@@ -50,7 +50,7 @@ body{
   grid-template-columns: 1fr 2fr 1fr;
 }
 
-@media (max-width: 1280px){
+@media (max-width: 1200px){
   .game{
     display: flex;
     flex-direction: column;
