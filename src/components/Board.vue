@@ -1,14 +1,17 @@
 <template>
-  <table>
-    <tr v-for="row in boardPieces" :key="row">
-      <td v-for="piece in row" :key="piece" :id="piece" @click="piece.clicked = !piece.clicked; checkWin()">
-        <Chip v-show="piece.clicked"/>
-        <img :src="piece.img" :alt="piece.alt">
-        <br/>
-        {{piece.title}}
-      </td>
-    </tr>
-  </table>
+  <div class="board">
+    <table>
+      <tr v-for="row in boardPieces" :key="row">
+        <td v-for="piece in row" :key="piece" :id="piece" @click="piece.clicked = !piece.clicked; checkWin()">
+          <Chip v-show="piece.clicked"/>
+          <img :src="piece.img" :alt="piece.alt">
+          <br/>
+          {{piece.title}}
+        </td>
+      </tr>
+    </table>
+    <button @click="newGame()">Restart</button>
+  </div>
 </template>
 
 <script>
@@ -156,7 +159,7 @@ export default {
             clicked: false,
             img: Bedge,
             alt: "Bedge Emote",
-            title: "Orisa Gameplay"
+            title: "Orisa boardplay"
           },
           {
             clicked: false,
@@ -280,8 +283,29 @@ export default {
 </script>
 
 <style scoped>
+.board{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.board button{
+  background: white;
+  border: none;
+  font-size: large;
+  box-shadow: 0 3px 4px #4f4f4f;
+
+  padding: 10px;
+  margin: 10px;
+  width: 100px;
+}
+.board button:hover{
+  cursor: pointer;
+}
+.board button:active{
+  box-shadow: 0 1px 4px #4f4f4f;
+}
 table{
-  margin: 20px;
+  margin-top: 20px;
   width: 600px;
 }
 td{
