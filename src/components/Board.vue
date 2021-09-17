@@ -21,7 +21,7 @@ import amongS from '../assets/board/amongS.svg'
 import TwoByTwo from '../assets/board/2by2.svg'
 import MODS from '../assets/board/MODS.svg'
 import suprChad from '../assets/board/suprChad.svg'
-import suprTroll from '../assets/board/suprTroll.svg'
+import sJerk from '../assets/board/sJerk.svg'
 
 import COPIUM from '../assets/board/COPIUM.svg'
 import Bedge from '../assets/board/Bedge.svg'
@@ -30,7 +30,7 @@ import NOOO from '../assets/board/NOOO.svg'
 import DANKIES from '../assets/board/DANKIES.svg'
 
 import suprJOY from '../assets/board/suprJOY.svg'
-import lebronJAM from '../assets/board/lebronJAM.svg'
+import PepegaAim from '../assets/board/PepegaAim.svg'
 import discordHoodie from '../assets/board/discordHoodie.svg'
 import ChugU from '../assets/board/ChugU.svg'
 import VeryCool from '../assets/board/VeryCool.svg'
@@ -168,9 +168,9 @@ export default {
           },
           {
             clicked: false,
-            img: suprTroll,
-            alt: "suprTroll Emote",
-            title: "Doing a Little Trolling"
+            img: sJerk,
+            alt: "sJerk Emote",
+            title: "Jerking Self Off"
           }
         ],
          [
@@ -214,9 +214,9 @@ export default {
           },
           {
             clicked: false,
-            img: lebronJAM,
-            alt: "lebronJAM Emote",
-            title: "Jammer is Playing"
+            img: PepegaAim,
+            alt: "PepegaAim Emote",
+            title: "Trash Aim"
           },
           {
             clicked: false,
