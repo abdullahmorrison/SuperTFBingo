@@ -2,7 +2,7 @@
   <div class="board">
     <table>
       <tr v-for="row in boardPieces" :key="row">
-        <td v-for="piece in row" :key="piece" :id="piece" @click="piece.clicked = !piece.clicked; checkWin()">
+        <td v-for="piece in row" :key="piece" :id="piece" @click="piece.clicked = !piece.clicked">
           <Chip v-show="piece.clicked"/>
           <img :src="piece.img" :alt="piece.alt">
           <br/>
@@ -51,6 +51,13 @@ export default {
   name: "Board",
   components: {
     Chip
+  },
+  created(){
+    this.boardPieces = JSON.parse(localStorage.getItem("Board"))
+  },
+  updated(){
+    this.checkWin()
+    localStorage.setItem("Board", JSON.stringify(this.boardPieces))
   },
   methods: {
     checkWin(){
@@ -110,6 +117,7 @@ export default {
           this.boardPieces[i][j].clicked=false;
         }
       }
+      localStorage.setItem("Board", JSON.stringify(this.boardPieces))
     }
   },
   emits: ['bingo'],

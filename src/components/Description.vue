@@ -21,10 +21,6 @@
     <p>
       You win if you have a full row, column, or diagonal filled with chips.
     </p>
-    <h3 style="color: red">Note:</h3>
-    <p>
-      Progress is not saved. Refreshing will cause the board to reset.
-    </p>
   </div>
 </template>
 
