@@ -1,9 +1,9 @@
 <template>
-  <Modal v-show="bingo" @newGame="bingo=false"/>
+  <Modal v-show="bingo" @newGame="bingo=false; this.$refs.board.newGame()"/>
   <Nav/>
   <main class="game">
     <Description/>
-    <Board @bingo="bingo=true"/>
+    <Board ref="board" @bingo="bingo=true"/>
   </main>
   <Footer/>
 </template>
