@@ -42,7 +42,7 @@ body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .game{
-  min-height: 700px;
+  min-height: 95vh;
 
   display: grid;
   align-items: center;
@@ -55,11 +55,6 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-}
-@media (min-width: 1280px){
-  .game{
-    height: 100vh;
   }
 }
 </style>
