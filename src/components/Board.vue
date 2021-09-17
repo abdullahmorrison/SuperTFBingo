@@ -159,7 +159,7 @@ export default {
             clicked: false,
             img: Bedge,
             alt: "Bedge Emote",
-            title: "Orisa boardplay"
+            title: "Orisa gameplay"
           },
           {
             clicked: false,
