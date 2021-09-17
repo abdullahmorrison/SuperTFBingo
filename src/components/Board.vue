@@ -53,7 +53,9 @@ export default {
     Chip
   },
   created(){
-    this.boardPieces = JSON.parse(localStorage.getItem("Board"))
+    if(localStorage.getItem("Board")){
+      this.boardPieces = JSON.parse(localStorage.getItem("Board"))
+    }
   },
   updated(){
     this.checkWin()
