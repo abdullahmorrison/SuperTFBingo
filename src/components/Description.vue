@@ -6,7 +6,7 @@
     </p>
     <h2>Instructions:</h2>
     <p>
-      <a href="https://www.twitch.tv/supertf" target="_blank">
+      <a @click="supertfTwitch()" href="https://www.twitch.tv/supertf" target="_blank">
         Watch Super's stream.
       </a> 
       If any of the actions stated on the board happens during his stream, add a 
@@ -26,7 +26,16 @@
 
 <script>
 export default {
-    name: 'Description'
+    name: 'Description',
+    methods: {
+    supertfTwitch() {//google analytics
+      this.$gtag.event('supertf-twitch-link-click', {
+        'event_category' : 'Description Links',
+        'event_label' : 'SuperTF Twitch Link Clicked',
+        'value': 1
+      })
+    }
+  }
 }
 </script>
 

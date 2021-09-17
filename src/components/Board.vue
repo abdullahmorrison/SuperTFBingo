@@ -2,7 +2,7 @@
   <div class="board">
     <table>
       <tr v-for="row in boardPieces" :key="row">
-        <td v-for="piece in row" :key="piece" :id="piece" @click="piece.clicked = !piece.clicked">
+        <td v-for="piece in row" :key="piece" :id="piece" @click="piece.clicked = !piece.clicked; boardClick()">
           <Chip v-show="piece.clicked"/>
           <img :src="piece.img" :alt="piece.alt">
           <br/>
@@ -10,7 +10,7 @@
         </td>
       </tr>
     </table>
-    <button @click="newGame()">Restart</button>
+    <button @click="restart()">Restart</button>
   </div>
 </template>
 
@@ -62,6 +62,21 @@ export default {
     localStorage.setItem("Board", JSON.stringify(this.boardPieces))
   },
   methods: {
+    boardClick() {//google analytics
+      this.$gtag.event('board-click', {
+        'event_category' : 'Playing Game',
+        'event_label' : 'Added a chip to the board',
+        'value': 1
+      })
+    },
+    restart() {//google analytics and restarting the game
+      this.newGame()
+      this.$gtag.event('restart-click', {
+        'event_category' : 'Playing Game',
+        'event_label' : 'Restarting the Game',
+        'value': 1
+      })
+    },
     checkWin(){
       let chips = 0
       //*Check horizontal win
