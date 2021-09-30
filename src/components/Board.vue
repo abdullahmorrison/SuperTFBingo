@@ -53,13 +53,13 @@ export default {
     Chip
   },
   created(){
-    if(localStorage.getItem("Board")){
-      this.boardPieces = JSON.parse(localStorage.getItem("Board"))
+    if(localStorage.getItem("Board1")){
+      this.boardPieces = JSON.parse(localStorage.getItem("Board1"))
     }
   },
   updated(){
     this.checkWin()
-    localStorage.setItem("Board", JSON.stringify(this.boardPieces))
+    localStorage.setItem("Board1", JSON.stringify(this.boardPieces))
   },
   methods: {
     boardClick() {//google analytics
