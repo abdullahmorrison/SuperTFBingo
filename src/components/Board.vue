@@ -190,7 +190,7 @@ export default {
             clicked: false,
             img: PepeW,
             alt: "PepeW Emote",
-            title: "Volskya"
+            title: "Volskaya"
           },
           {
             clicked: false,
