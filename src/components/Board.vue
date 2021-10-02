@@ -1,15 +1,13 @@
 <template>
-  <div class="board">
-    <table>
-      <tr v-for="row in boardPieces" :key="row">
-        <td v-for="piece in row" :key="piece" :id="piece" @click="piece.clicked = !piece.clicked; boardClick()">
-          <Chip v-show="piece.clicked"/>
-          <img :src="piece.img" :alt="piece.alt">
-          <br/>
-          {{piece.title}}
-        </td>
-      </tr>
-    </table>
+  <div class="game">
+    <div class="board">
+      <div v-for="piece in boardPieces" :key="piece" class="tile" @click="piece.clicked = !piece.clicked; boardClick()">
+        <Chip v-show="piece.clicked"/>
+        <img :src="piece.img" :alt="piece.alt" />
+        <br/>
+      {{piece.title}}
+    </div>
+    </div>
     <button @click="restart()">Restart</button>
   </div>
 </template>
@@ -53,13 +51,13 @@ export default {
     Chip
   },
   created(){
-    if(localStorage.getItem("Board1")){
-      this.boardPieces = JSON.parse(localStorage.getItem("Board1"))
+    if(localStorage.getItem("Boardv2")){
+      this.boardPieces = JSON.parse(localStorage.getItem("Boardv2"))
     }
   },
   updated(){
-    this.checkWin()
-    localStorage.setItem("Board1", JSON.stringify(this.boardPieces))
+    this.checkWin(5)
+    localStorage.setItem("Boardv2", JSON.stringify(this.boardPieces))
   },
   methods: {
     boardClick() {//google analytics
@@ -77,230 +75,217 @@ export default {
         'value': 1
       })
     },
-    checkWin(){
+    checkWin(chipsInARow){
       let chips = 0
       //*Check horizontal win
-      for (var i = 0; i < this.boardPieces.length; i++) {
-        for (var j = 0; j < this.boardPieces[i].length; j++) {
+      for (var i = 0; i < this.boardPieces.length; i+=chipsInARow) {
+        for (var j = i; j < i+chipsInARow; j++) {
           //checking the row
-          //console.log(this.boardPieces[i][j])
-          if (this.boardPieces[i][j].clicked == true) {
+          if (this.boardPieces[j].clicked == true) {
             chips++;
           }
         }
-        if (chips == this.boardPieces.length) {
+        if (chips == chipsInARow) {
           //checking for horizonal win
           this.$emit('bingo')
         }
         chips = 0;
       }
       //*Check vertical win
-      for (i = 0; i < this.boardPieces.length; i++) {
-        for (j = 0; j < this.boardPieces.length; j++) {
-          if (this.boardPieces[j][i].clicked == true) {
+      for (i = 0; i < chipsInARow; i++) {
+        for (j = i; j < this.boardPieces.length; j+=chipsInARow) {
+          if (this.boardPieces[j].clicked == true) {
             chips++;
           }
         }
-        if (chips == this.boardPieces.length) {//checking for vertical win
+        if (chips == chipsInARow) {//checking for vertical win
           this.$emit('bingo')
         }
         chips = 0;
       }
       //*Check top-left to bottom-right diagonal win
-      for (i = 0; i < this.boardPieces.length; i++) {
-        if (this.boardPieces[i][i].clicked == true) {
+      for (i = 0; i < this.boardPieces.length; i+=chipsInARow+1) {
+        if (this.boardPieces[i].clicked == true) {
           chips++;
         }
       }
-      if (chips == this.boardPieces.length) {//checking for diagonal win
+      if (chips == chipsInARow) {//checking for diagonal win
         this.$emit('bingo')
       }
       chips = 0;
       //*Check top-right to bottom-left diagonal win
-      for (i = 0; i < this.boardPieces.length; i++) {
-        if (this.boardPieces[i][this.boardPieces.length-1-i].clicked == true) {
+      for (i = chipsInARow-1; i < this.boardPieces.length-1; i+=chipsInARow-1) {
+        if (this.boardPieces[i].clicked == true) {
           
           chips++;
         }
       }
-      if (chips == this.boardPieces.length) {//checking for diagonal win
+      if (chips == chipsInARow) {//checking for diagonal win
         this.$emit('bingo')
       }
       chips = 0;
     },
     newGame(){
       for(var i=0; i<this.boardPieces.length; i++){
-        for(var j=0; j<this.boardPieces[i].length; j++){
-          this.boardPieces[i][j].clicked=false;
-        }
+          this.boardPieces[i].clicked=false;
       }
-      localStorage.setItem("Board", JSON.stringify(this.boardPieces))
+      localStorage.setItem("Boardv2", JSON.stringify(this.boardPieces))
     }
   },
   emits: ['bingo'],
   data(){
     return{
       boardPieces: [
-        [
-          {
-            clicked: false,
-            img: amongS,
-            alt: "amongS Emote",
-            title: "Among Us Reference"
-          },
-          {
-            clicked: false,
-            img: TwoByTwo,
-            alt: "Super 2x2",
-            title: "2x2 in Chat"
-          },
-          {
-            clicked: false,
-            img: MODS,
-            alt: "MODS Emote",
-            title: "\"Shoot That Guy\""
-          },
-          {
-            clicked: false,
-            img: suprChad,
-            alt: "suprChad Emote",
-            title: "Chad Moment"
-          },
-          {
-            clicked: false,
-            img: sJerk,
-            alt: "sJerk Emote",
-            title: "Jerking Self Off"
-          }
-        ],
-         [
-          {
-            clicked: false,
-            img: COPIUM,
-            alt: "COPIUM Emote",
-            title: "Coping"
-          },
-          {
-            clicked: false,
-            img: Bedge,
-            alt: "Bedge Emote",
-            title: "Orisa Gameplay"
-          },
-          {
-            clicked: false,
-            img: PepeW,
-            alt: "PepeW Emote",
-            title: "Volskaya"
-          },
-          {
-            clicked: false,
-            img: NOOO,
-            alt: "NOOO Emote",
-            title: "\"NOOOOO\""
-          },
-          {
-            clicked: false,
-            img: DANKIES,
-            alt: "DANKIES Emote",
-            title: "Mumbling Words"
-          }
-        ],
-         [
-          {
-            clicked: false,
-            img: suprJOY,
-            alt: "suprJOY Emote",
-            title: "\"Just Kidding Suck My Balls\""
-          },
-          {
-            clicked: false,
-            img: PepegaAim,
-            alt: "PepegaAim Emote",
-            title: "Trash Aim"
-          },
-          {
-            clicked: false,
-            img: discordHoodie,
-            alt: "Discord Hoodie",
-            title: "Wearing Discord Hoodie"
-          },
-          {
-            clicked: false,
-            img: ChugU,
-            alt: "ChugU Emote",
-            title: "New Chug"
-          },
-          {
-            clicked: false,
-            img: VeryCool,
-            alt: "VeryCool Emote",
-            title: "Eating On Stream"
-          }
-        ],
-         [
-          {
-            clicked: false,
-            img: suprOMEGALUL,
-            alt: "suprOMEGALUL Emote",
-            title: "Good One Dono"
-          },
-          {
-            clicked: false,
-            img: FourWeirdBuff,
-            alt: "4WeirdBuff Emote",
-            title: "\"DAAAPHNEE\""
-          },
-          {
-            clicked: false,
-            img: MYEYES,
-            alt: "MYEYES Emote",
-            title: "Wiffed Shatter"
-          },
-          {
-            clicked: false,
-            img: pepeCD,
-            alt: "pepeCD Emote",
-            title: "Doc Song Playing"
-          },
-          {
-            clicked: false,
-            img: peePoo,
-            alt: "peePoo Emote",
-            title: "Bathroom Break"
-          }
-        ],
-         [
-          {
-            clicked: false,
-            img: borpaSpin,
-            alt: "borpaSpin Emote",
-            title: "\"Cum\""
-          },
-          {
-            clicked: false,
-            img: MTD,
-            alt: "MTD Emote",
-            title: "Main Tank Difference"
-          },
-          {
-            clicked: false,
-            img: suprWTF,
-            alt: "suprWTF Emote",
-            title: "WTF Dono"
-          },
-          {
-            clicked: false,
-            img: FourGitte,
-            alt: "4Gitte Emote",
-            title: "Unstoppable Brig"
-          },
-          {
-            clicked: false,
-            img: Wokeage,
-            alt: "Wokeage Emote",
-            title: "Variety Time"
-          }
-        ],
+        {
+          clicked: false,
+          img: amongS,
+          alt: "amongS Emote",
+          title: "Among Us Reference"
+        },
+        {
+          clicked: false,
+          img: TwoByTwo,
+          alt: "Super 2x2",
+          title: "2x2 in Chat"
+        },
+        {
+          clicked: false,
+          img: MODS,
+          alt: "MODS Emote",
+          title: "\"Shoot That Guy\""
+        },
+        {
+          clicked: false,
+          img: suprChad,
+          alt: "suprChad Emote",
+          title: "Chad Moment"
+        },
+        {
+          clicked: false,
+          img: sJerk,
+          alt: "sJerk Emote",
+          title: "Jerking Self Off"
+        },
+        {
+          clicked: false,
+          img: COPIUM,
+          alt: "COPIUM Emote",
+          title: "Coping"
+        },
+        {
+          clicked: false,
+          img: Bedge,
+          alt: "Bedge Emote",
+          title: "Orisa Gameplay"
+        },
+        {
+          clicked: false,
+          img: PepeW,
+          alt: "PepeW Emote",
+          title: "Volskaya"
+        },
+        {
+          clicked: false,
+          img: NOOO,
+          alt: "NOOO Emote",
+          title: "\"NOOOOO\""
+        },
+        {
+          clicked: false,
+          img: DANKIES,
+          alt: "DANKIES Emote",
+          title: "Mumbling Words"
+        },
+        {
+          clicked: false,
+          img: suprJOY,
+          alt: "suprJOY Emote",
+          title: "\"Just Kidding Suck My Balls\""
+        },
+        {
+          clicked: false,
+          img: PepegaAim,
+          alt: "PepegaAim Emote",
+          title: "Trash Aim"
+        },
+        {
+          clicked: false,
+          img: discordHoodie,
+          alt: "Discord Hoodie",
+          title: "Wearing Discord Hoodie"
+        },
+        {
+          clicked: false,
+          img: ChugU,
+          alt: "ChugU Emote",
+          title: "New Chug"
+        },
+        {
+          clicked: false,
+          img: VeryCool,
+          alt: "VeryCool Emote",
+          title: "Eating On Stream"
+        },
+        {
+          clicked: false,
+          img: suprOMEGALUL,
+          alt: "suprOMEGALUL Emote",
+          title: "Good One Dono"
+        },
+        {
+          clicked: false,
+          img: FourWeirdBuff,
+          alt: "4WeirdBuff Emote",
+          title: "\"DAAAPHNEE\""
+        },
+        {
+          clicked: false,
+          img: MYEYES,
+          alt: "MYEYES Emote",
+          title: "Wiffed Shatter"
+        },
+        {
+          clicked: false,
+          img: pepeCD,
+          alt: "pepeCD Emote",
+          title: "Doc Song Playing"
+        },
+        {
+          clicked: false,
+          img: peePoo,
+          alt: "peePoo Emote",
+          title: "Bathroom Break"
+        },
+        {
+          clicked: false,
+          img: borpaSpin,
+          alt: "borpaSpin Emote",
+          title: "\"Cum\""
+        },
+        {
+          clicked: false,
+          img: MTD,
+          alt: "MTD Emote",
+          title: "Main Tank Difference"
+        },
+        {
+          clicked: false,
+          img: suprWTF,
+          alt: "suprWTF Emote",
+          title: "WTF Dono"
+        },
+        {
+          clicked: false,
+          img: FourGitte,
+          alt: "4Gitte Emote",
+          title: "Unstoppable Brig"
+        },
+        {
+          clicked: false,
+          img: Wokeage,
+          alt: "Wokeage Emote",
+          title: "Variety Time"
+        }
       ]
     }
   }
@@ -308,12 +293,17 @@ export default {
 </script>
 
 <style scoped>
-.board{
+.game{
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
-.board button{
+.board{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 20px;
+  width: 600px;
+}
+button{
   background: white;
   border: none;
   font-size: large;
@@ -323,25 +313,23 @@ export default {
   margin: 10px;
   width: 100px;
 }
-.board button:hover{
+button:hover{
   cursor: pointer;
 }
-.board button:active{
+button:active{
   box-shadow: 0 1px 4px #4f4f4f;
 }
-table{
-  margin-top: 20px;
-  width: 600px;
-}
-td{
+
+.tile{
   background: white;
-  width: 100px;
-  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
   padding: 5px;
+  margin: 1px;
   font-size: small;
   text-align: center;
 }
-td:hover{
+.tile:hover{
   background: #f0a759;
   cursor: pointer;
 }
@@ -349,7 +337,7 @@ td:hover{
   table{
     width: 90vw;
   }
-  td{
+  .tile{
     height: 50px;
     width: 50px;
   }
