@@ -54,6 +54,7 @@ export default {
     if(localStorage.getItem("Boardv2")){
       this.boardPieces = JSON.parse(localStorage.getItem("Boardv2"))
     }
+    this.randomizeBoard()
   },
   updated(){
     this.checkWin(5)
@@ -129,7 +130,16 @@ export default {
       for(var i=0; i<this.boardPieces.length; i++){
           this.boardPieces[i].clicked=false;
       }
+      this.randomizeBoard()
       localStorage.setItem("Boardv2", JSON.stringify(this.boardPieces))
+    },
+    randomizeBoard(){
+      for (let i = this.boardPieces.length - 1; i > 0; i--) {
+        let randomIndex = Math.floor(Math.random() * i)
+        let temp = this.boardPieces[i]
+        this.boardPieces[i] = this.boardPieces[randomIndex]
+        this.boardPieces[randomIndex] = temp
+      }
     }
   },
   emits: ['bingo'],
@@ -322,6 +332,10 @@ button:active{
 
 .tile{
   background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   min-width: 100px;
   min-height: 100px;
   padding: 5px;
