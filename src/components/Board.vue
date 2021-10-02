@@ -54,7 +54,6 @@ export default {
     if(localStorage.getItem("Boardv2")){
       this.boardPieces = JSON.parse(localStorage.getItem("Boardv2"))
     }
-    this.randomizeBoard()
   },
   updated(){
     this.checkWin(5)
