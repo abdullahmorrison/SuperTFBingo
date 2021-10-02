@@ -1,7 +1,7 @@
 <template>
   <WinModal v-show="bingo" @newGame="bingo=false; this.$refs.board.newGame()"/>
   <Nav/>
-  <main class="game">
+  <main class="container">
     <Description/>
     <Board ref="board" @bingo="bingo=true"/>
   </main>
@@ -41,7 +41,7 @@ body{
   background:#a0a7aa;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.game{
+.container{
   min-height: 95vh;
 
   display: grid;
@@ -51,7 +51,7 @@ body{
 }
 
 @media (max-width: 1200px){
-  .game{
+  .container{
     display: flex;
     flex-direction: column;
     justify-content: center;
