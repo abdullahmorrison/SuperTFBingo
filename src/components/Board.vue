@@ -8,7 +8,7 @@
       {{piece.title}}
     </div>
     </div>
-    <button @click="restart()">Restart</button>
+    <button @click="newGame()">New Game</button>
   </div>
 </template>
 
@@ -68,14 +68,6 @@ export default {
         'value': 1
       })
     },
-    restart() {//google analytics and restarting the game
-      this.newGame()
-      this.$gtag.event('restart-click', {
-        'event_category' : 'Playing Game',
-        'event_label' : 'Restarting the Game',
-        'value': 1
-      })
-    },
     checkWin(chipsInARow){
       let chips = 0
       //*Check horizontal win
@@ -127,6 +119,13 @@ export default {
       chips = 0;
     },
     newGame(){
+      //google analytics and restarting the game
+      this.$gtag.event('restart-click', {
+        'event_category' : 'Playing Game',
+        'event_label' : 'Restarting the Game',
+        'value': 1
+      })
+
       for(var i=0; i<this.boardPieces.length; i++){
           this.boardPieces[i].clicked=false;
       }
@@ -321,7 +320,7 @@ button{
 
   padding: 10px;
   margin: 10px;
-  width: 100px;
+  width: 120px;
 }
 button:hover{
   cursor: pointer;
