@@ -305,6 +305,7 @@ export default {
 .game{
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .board{
   display: grid;
@@ -335,8 +336,7 @@ button:active{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-width: 100px;
-  min-height: 100px;
+
   padding: 5px;
   margin: 1px;
   font-size: small;
@@ -347,16 +347,12 @@ button:active{
   cursor: pointer;
 }
 @media (max-width: 620px){
-  table{
+  .board{
     width: 90vw;
-  }
-  .tile{
-    height: 50px;
-    width: 50px;
   }
 }
 @media (max-width: 450px){
-  td{
+  .tile{
     font-size: x-small;
   }
   img{
