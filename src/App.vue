@@ -1,9 +1,9 @@
 <template>
-  <WinModal v-show="bingo" @newGame="bingo=false; this.$refs.board.newGame()"/>
+  <WinModal v-show="bingo" @newGame="bingo=false; this.$refs.board.newGame(); this.goForBlackout = false" @goForBlackout="this.bingo = false; this.goForBlackout = true"/>
   <Nav/>
   <main class="container">
     <Description/>
-    <Board ref="board" @bingo="bingo=true"/>
+    <Board ref="board" :goForBlackout="this.goForBlackout" @bingo="bingo=true"/>
   </main>
   <Footer/>
 </template>
@@ -26,7 +26,8 @@ export default {
   },
   data(){
     return{
-      bingo: false //used to display the modal
+      bingo: false, //used to display the modal
+      goForBlackout: false
     }
   }
 }
