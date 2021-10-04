@@ -50,6 +50,7 @@ export default {
   components: {
     Chip
   },
+  props: ['goForBlackout'],
   created(){
     if(localStorage.getItem("Boardv2")){
       this.boardPieces = JSON.parse(localStorage.getItem("Boardv2"))
@@ -68,54 +69,67 @@ export default {
       })
     },
     checkWin(chipsInARow){
-      let chips = 0
-      //*Check horizontal win
-      for (var i = 0; i < this.boardPieces.length; i+=chipsInARow) {
-        for (var j = i; j < i+chipsInARow; j++) {
-          //checking the row
-          if (this.boardPieces[j].clicked == true) {
+      if(this.goForBlackout == false){
+        let chips = 0
+        //*Check horizontal win
+        for (var i = 0; i < this.boardPieces.length; i+=chipsInARow) {
+          for (var j = i; j < i+chipsInARow; j++) {
+            //checking the row
+            if (this.boardPieces[j].clicked == true) {
+              chips++;
+            }
+          }
+          if (chips == chipsInARow) {
+            //checking for horizonal win
+            this.$emit('bingo')
+          }
+          chips = 0;
+        }
+        //*Check vertical win
+        for (i = 0; i < chipsInARow; i++) {
+          for (j = i; j < this.boardPieces.length; j+=chipsInARow) {
+            if (this.boardPieces[j].clicked == true) {
+              chips++;
+            }
+          }
+          if (chips == chipsInARow) {//checking for vertical win
+            this.$emit('bingo')
+          }
+          chips = 0;
+        }
+        //*Check top-left to bottom-right diagonal win
+        for (i = 0; i < this.boardPieces.length; i+=chipsInARow+1) {
+          if (this.boardPieces[i].clicked == true) {
             chips++;
           }
         }
-        if (chips == chipsInARow) {
-          //checking for horizonal win
+        if (chips == chipsInARow) {//checking for diagonal win
+          this.$emit('bingo')
+        }
+        chips = 0;
+        //*Check top-right to bottom-left diagonal win
+        for (i = chipsInARow-1; i < this.boardPieces.length-1; i+=chipsInARow-1) {
+          if (this.boardPieces[i].clicked == true) {
+            
+            chips++;
+          }
+        }
+        if (chips == chipsInARow) {//checking for diagonal win
           this.$emit('bingo')
         }
         chips = 0;
       }
-      //*Check vertical win
-      for (i = 0; i < chipsInARow; i++) {
-        for (j = i; j < this.boardPieces.length; j+=chipsInARow) {
-          if (this.boardPieces[j].clicked == true) {
-            chips++;
+      else{
+        let counter = 0
+        for(let i=0; i < this.boardPieces.length; i++){
+          if(this.boardPieces[i].clicked == true){
+            counter++
           }
         }
-        if (chips == chipsInARow) {//checking for vertical win
+        if(counter == this.boardPieces.length){
           this.$emit('bingo')
         }
-        chips = 0;
       }
-      //*Check top-left to bottom-right diagonal win
-      for (i = 0; i < this.boardPieces.length; i+=chipsInARow+1) {
-        if (this.boardPieces[i].clicked == true) {
-          chips++;
-        }
-      }
-      if (chips == chipsInARow) {//checking for diagonal win
-        this.$emit('bingo')
-      }
-      chips = 0;
-      //*Check top-right to bottom-left diagonal win
-      for (i = chipsInARow-1; i < this.boardPieces.length-1; i+=chipsInARow-1) {
-        if (this.boardPieces[i].clicked == true) {
-          
-          chips++;
-        }
-      }
-      if (chips == chipsInARow) {//checking for diagonal win
-        this.$emit('bingo')
-      }
-      chips = 0;
     },
     newGame(){
       //google analytics and restarting the game
