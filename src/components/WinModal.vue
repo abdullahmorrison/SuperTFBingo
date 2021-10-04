@@ -3,10 +3,11 @@
         <div className="modal-content">
             <div className="modal-header"><h3>BINGO!</h3></div>
             <div id="modal-question" className="modal-body">
-                Do You Want to Play Again?
+                Do You Want to Continue Playing for a Blackout (Fill The Entire Board)?
             </div>
             <div className="modal-footer">
-                <button id="modal-footer-new" @click="$emit('newGame')"><h3>New Game</h3></button>
+                <button class="confirm" @click="$emit('goForBlackout')">Continue Playing</button>
+                <button @click="$emit('newGame')">New Game</button>
             </div>
         </div>
     </div>
@@ -50,13 +51,16 @@ export default {
     text-align: right;
 }
 .modal-footer button {
-    background:  orange;
     cursor: pointer;
+    font-weight: bold;
     padding: 10px;
     margin: 5px;
 
     border: none;
     box-shadow: 2px 2px 4px #919191;
+}
+.modal-footer .confirm{
+    background:  orange;
 }
 .modal-footer button:active {
     box-shadow: 1px 1px 3px #919191;
