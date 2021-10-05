@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .modal {
     position: fixed; /* Stay in place */
     z-index: 2; /* Sit on top */
