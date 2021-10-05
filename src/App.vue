@@ -10,8 +10,8 @@
     <Description/>
     <Board ref="board" 
       :goForBlackout="this.goingForBlackout" 
-      @bingo="bingo=true" 
-      @blackout="this.blackout=true"
+      @bingo="gotBingo()" 
+      @blackout="gotBlackout()"
     />
   </main>
   <Footer/>
@@ -42,6 +42,11 @@ export default {
       goingForBlackout: false
     }
   },
+  created(){
+    this.bingo = JSON.parse(localStorage.getItem('bingo'))
+    this.blackout = JSON.parse(localStorage.getItem('blackout'))
+    this.goingForBlackout = JSON.parse(localStorage.getItem('goingForBlackout'))
+  },
   methods:{
     restart(){
       this.bingo=false
@@ -49,10 +54,27 @@ export default {
 
       this.blackout = false
       this.goingForBlackout = false
+
+      localStorage.setItem('bingo', JSON.stringify(this.bingo))
+      localStorage.setItem('blackout', JSON.stringify(this.blackout))
+      localStorage.setItem('goingForBlackout', JSON.stringify(this.goingForBlackout))
+    },
+    gotBingo(){
+      this.bingo=true
+
+      localStorage.setItem('bingo', JSON.stringify(this.bingo))
     },
     goForBlackout(){
       this.bingo = false
       this.goingForBlackout = true
+
+      localStorage.setItem('bingo', JSON.stringify(this.bingo))
+      localStorage.setItem('goingForBlackout', JSON.stringify(this.goingForBlackout))
+    },
+    gotBlackout(){
+      this.blackout=true
+
+      localStorage.setItem('blackout', JSON.stringify(this.blackout))
     }
   }
 }
