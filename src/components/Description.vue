@@ -12,15 +12,17 @@
       If any of the actions stated on the board happens during his stream, add a 
       chip on the action committed.
     </p>
-    <h3>How to add/remove a chip:</h3>
+    <h3>How to Add/Remove a Chip:</h3>
     <p>
       Click on the tile that contains the thing that occurred to add the chip. 
       Click again to remove the chip
     </p>
-    <h3>How to win (Bingo!):</h3>
+    <h3>How to Win (Bingo!):</h3>
     <p>
       You win if you have a full row, column, or diagonal filled with chips.
     </p>
+    <h3>How to Get a Blackout (A Better Win)</h3>
+    <p>Fill the entire board with chips.</p>
   </div>
 </template>
 
