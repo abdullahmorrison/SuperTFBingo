@@ -12,6 +12,7 @@
       :goForBlackout="this.goingForBlackout" 
       @bingo="gotBingo()" 
       @blackout="gotBlackout()"
+      @newGame="restart()"
     />
   </main>
   <Footer/>

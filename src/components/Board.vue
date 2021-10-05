@@ -8,7 +8,7 @@
       {{piece.title}}
     </div>
     </div>
-    <button @click="newGame()">New Game</button>
+    <button @click="newGame(); $emit('newGame')">New Game</button>
   </div>
 </template>
 
