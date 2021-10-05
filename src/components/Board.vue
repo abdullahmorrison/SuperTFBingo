@@ -18,7 +18,7 @@ import Chip from './Chip.vue'
 import amongS from '../assets/board/amongS.svg'
 import TwoByTwo from '../assets/board/2by2.svg'
 import MODS from '../assets/board/MODS.svg'
-import suprChad from '../assets/board/suprChad.svg'
+import baboon from '../assets/board/baboon.svg'
 import sJerk from '../assets/board/sJerk.svg'
 
 import COPIUM from '../assets/board/COPIUM.svg'
@@ -52,13 +52,13 @@ export default {
   },
   props: ['goForBlackout'],
   created(){
-    if(localStorage.getItem("Boardv2")){
-      this.boardPieces = JSON.parse(localStorage.getItem("Boardv2"))
+    if(localStorage.getItem("Boardv3")){
+      this.boardPieces = JSON.parse(localStorage.getItem("Boardv3"))
     }
   },
   updated(){
     this.checkWin(5)
-    localStorage.setItem("Boardv2", JSON.stringify(this.boardPieces))
+    localStorage.setItem("Boardv3", JSON.stringify(this.boardPieces))
   },
   methods: {
     boardClick() {//google analytics
@@ -143,7 +143,7 @@ export default {
           this.boardPieces[i].clicked=false;
       }
       this.randomizeBoard()
-      localStorage.setItem("Boardv2", JSON.stringify(this.boardPieces))
+      localStorage.setItem("Boardv3", JSON.stringify(this.boardPieces))
     },
     randomizeBoard(){
       for (let i = this.boardPieces.length - 1; i > 0; i--) {
@@ -178,9 +178,9 @@ export default {
         },
         {
           clicked: false,
-          img: suprChad,
-          alt: "suprChad Emote",
-          title: "Chad Moment"
+          img: baboon,
+          alt: "Image of a Baboon",
+          title: "Calls Someone a Baboon"
         },
         {
           clicked: false,
