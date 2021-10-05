@@ -6,7 +6,7 @@
                 Do You Want to Continue Playing for a Blackout (Fill The Entire Board)?
             </div>
             <div className="modal-footer">
-                <button class="confirm" @click="$emit('goForBlackout')">Continue Playing</button>
+                <button class="confirm" @click="goForBlackout()">Continue Playing</button>
                 <button @click="$emit('newGame')">New Game</button>
             </div>
         </div>
@@ -15,7 +15,18 @@
 
 <script>
 export default {
-    emits: ['newGame']
+    emits: ['newGame'],
+    methods:{
+        goForBlackout(){
+            this.$emit('goForBlackout')
+            //For Google Analytics
+            this.$gtag.event('go-for-blackout-click', {
+                'event_category' : 'Playing Game',
+                'event_label' : 'Playing More to Get a Blackout',
+                'value': 1
+            })
+        }
+    }
 }
 </script>
 
