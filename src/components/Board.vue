@@ -127,7 +127,7 @@ export default {
           }
         }
         if(counter == this.boardPieces.length){
-          this.$emit('bingo')
+          this.$emit('blackout')
         }
       }
     },

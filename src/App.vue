@@ -1,15 +1,25 @@
 <template>
-  <WinModal v-show="bingo" @newGame="bingo=false; this.$refs.board.newGame(); this.goForBlackout = false" @goForBlackout="this.bingo = false; this.goForBlackout = true"/>
+  <WinModal 
+    v-show="bingo" 
+    @newGame="restart()" 
+    @goForBlackout="goForBlackout()"
+  />
+  <BlackoutModal v-show="blackout" @newGame="restart()"/>
   <Nav/>
   <main class="container">
     <Description/>
-    <Board ref="board" :goForBlackout="this.goForBlackout" @bingo="bingo=true"/>
+    <Board ref="board" 
+      :goForBlackout="this.goingForBlackout" 
+      @bingo="bingo=true" 
+      @blackout="this.blackout=true"
+    />
   </main>
   <Footer/>
 </template>
 
 <script>
 import WinModal from './components/WinModal.vue'
+import BlackoutModal from './components/BlackoutModal.vue'
 import Nav from './components/Nav.vue'
 import Description from './components/Description.vue'
 import Board from './components/Board.vue'
@@ -19,6 +29,7 @@ export default {
   name: 'App',
   components: {
     WinModal,
+    BlackoutModal,
     Nav,
     Description,
     Board,
@@ -27,7 +38,21 @@ export default {
   data(){
     return{
       bingo: false, //used to display the modal
-      goForBlackout: false
+      blackout: false,
+      goingForBlackout: false
+    }
+  },
+  methods:{
+    restart(){
+      this.bingo=false
+      this.$refs.board.newGame()
+
+      this.blackout = false
+      this.goingForBlackout = false
+    },
+    goForBlackout(){
+      this.bingo = false
+      this.goingForBlackout = true
     }
   }
 }
