@@ -44,9 +44,15 @@ export default {
     }
   },
   created(){
-    this.bingo = JSON.parse(localStorage.getItem('bingo'))
-    this.blackout = JSON.parse(localStorage.getItem('blackout'))
-    this.goingForBlackout = JSON.parse(localStorage.getItem('goingForBlackout'))
+    if(JSON.parse(localStorage.getItem('bingo'))){
+      this.bingo = JSON.parse(localStorage.getItem('bingo'))
+    }
+    if(JSON.parse(localStorage.getItem('blackout'))){
+      this.blackout = JSON.parse(localStorage.getItem('blackout'))
+    }
+    if(JSON.parse(localStorage.getItem('goingForBlackout'))){
+      this.goingForBlackout = JSON.parse(localStorage.getItem('goingForBlackout'))
+    }
   },
   methods:{
     restart(){
