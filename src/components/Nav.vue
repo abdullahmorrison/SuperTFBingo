@@ -1,7 +1,7 @@
 <template>
   <nav>
     <img src="../assets/logo.svg" alt="SuprTF Emote">
-    <h1>SuperTF Bingo</h1>
+    <h1>(#200) SuperTF Bingo</h1>
   </nav>
 </template>
 
