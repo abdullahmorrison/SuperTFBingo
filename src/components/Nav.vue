@@ -22,6 +22,7 @@ export default {
   nav h1{
     color: white;
     font-size: xx-large;
+    text-align: center;
   }
   nav img{
     margin-right: 10px;
