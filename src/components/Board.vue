@@ -5,52 +5,36 @@
         <Chip v-show="piece.clicked"/>
         <img :src="piece.img" :alt="piece.alt" />
         <br/>
-      {{piece.title}}
+        {{piece.title}}
+      </div>
     </div>
+    <div>
+      <button @click="newGame(); $emit('newGame')">New Game</button>
+      <DifficultySelect @selectDifficulty="changeDifficulty"/>
     </div>
-    <button @click="newGame(); $emit('newGame')">New Game</button>
   </div>
 </template>
 
 <script>
 import Chip from './Chip.vue'
+import DifficultySelect from './DifficultySelect'
 
-import amongS from '../assets/board/easyTiles/amongS.svg'
-import TwoByTwo from '../assets/board/easyTiles/2by2.svg'
-import MODS from '../assets/board/easyTiles/MODS.svg'
-import baboon from '../assets/board/easyTiles/baboon.svg'
-import sJerk from '../assets/board/easyTiles/sJerk.svg'
-
-import COPIUM from '../assets/board/easyTiles/COPIUM.svg'
-import Bedge from '../assets/board/easyTiles/Bedge.svg'
-import PepeW from '../assets/board/easyTiles/PepeW.svg'
-import NOOO from '../assets/board/easyTiles/NOOO.svg'
-import DANKIES from '../assets/board/easyTiles/DANKIES.svg'
-
-import suprJOY from '../assets/board/easyTiles/suprJOY.svg'
-import PepegaAim from '../assets/board/easyTiles/PepegaAim.svg'
-import discordHoodie from '../assets/board/easyTiles/discordHoodie.svg'
-import ChugU from '../assets/board/easyTiles/ChugU.svg'
-import VeryCool from '../assets/board/easyTiles/VeryCool.svg'
-
-import suprOMEGALUL from '../assets/board/easyTiles/suprOMEGALUL.svg'
-import FourWeirdBuff from '../assets/board/easyTiles/4WeirdBuff.svg'
-import MYEYES from '../assets/board/easyTiles/MYEYES.svg'
-import pepeCD from '../assets/board/easyTiles/pepeCD.svg'
-import peePoo from '../assets/board/easyTiles/peePoo.svg'
-
-import borpaSpin from '../assets/board/easyTiles/borpaSpin.svg'
-import MTD from '../assets/board/easyTiles/MTD.svg'
-import suprWTF from '../assets/board/easyTiles/suprWTF.svg'
-import FourGitte from '../assets/board/easyTiles/4Gitte.svg'
-import Wokeage from '../assets/board/easyTiles/Wokeage.svg'
+import easyTiles from '../assets/board/data/easyTiles.js'
+import impossibleTiles from '../assets/board/data/impossibleTiles.js'
 
 export default {
   name: "Board",
   components: {
-    Chip
+    Chip,
+    DifficultySelect
   },
   props: ['goForBlackout'],
+  emits: ['bingo'],
+  data(){
+    return{
+      boardPieces: impossibleTiles
+    }
+  },
   created(){
     if(localStorage.getItem("Boardv3")){
       this.boardPieces = JSON.parse(localStorage.getItem("Boardv3"))
@@ -152,163 +136,13 @@ export default {
         this.boardPieces[i] = this.boardPieces[randomIndex]
         this.boardPieces[randomIndex] = temp
       }
-    }
-  },
-  emits: ['bingo'],
-  data(){
-    return{
-      boardPieces: [
-        {
-          clicked: false,
-          img: amongS,
-          alt: "amongS Emote",
-          title: "Among Us Reference"
-        },
-        {
-          clicked: false,
-          img: TwoByTwo,
-          alt: "Super 2x2",
-          title: "2x2 in Chat"
-        },
-        {
-          clicked: false,
-          img: MODS,
-          alt: "MODS Emote",
-          title: "\"Shoot That Guy\""
-        },
-        {
-          clicked: false,
-          img: baboon,
-          alt: "Image of a Baboon",
-          title: "Calls Someone a Baboon"
-        },
-        {
-          clicked: false,
-          img: sJerk,
-          alt: "sJerk Emote",
-          title: "Jerking Self Off"
-        },
-        {
-          clicked: false,
-          img: COPIUM,
-          alt: "COPIUM Emote",
-          title: "Coping"
-        },
-        {
-          clicked: false,
-          img: Bedge,
-          alt: "Bedge Emote",
-          title: "Orisa Gameplay"
-        },
-        {
-          clicked: false,
-          img: PepeW,
-          alt: "PepeW Emote",
-          title: "Volskaya"
-        },
-        {
-          clicked: false,
-          img: NOOO,
-          alt: "NOOO Emote",
-          title: "\"NOOOOO\""
-        },
-        {
-          clicked: false,
-          img: DANKIES,
-          alt: "DANKIES Emote",
-          title: "Mumbling Words"
-        },
-        {
-          clicked: false,
-          img: suprJOY,
-          alt: "suprJOY Emote",
-          title: "\"Just Kidding Suck My Balls\""
-        },
-        {
-          clicked: false,
-          img: PepegaAim,
-          alt: "PepegaAim Emote",
-          title: "Trash Aim"
-        },
-        {
-          clicked: false,
-          img: discordHoodie,
-          alt: "Discord Hoodie",
-          title: "Wearing Discord Hoodie"
-        },
-        {
-          clicked: false,
-          img: ChugU,
-          alt: "ChugU Emote",
-          title: "New Chug"
-        },
-        {
-          clicked: false,
-          img: VeryCool,
-          alt: "VeryCool Emote",
-          title: "Eating On Stream"
-        },
-        {
-          clicked: false,
-          img: suprOMEGALUL,
-          alt: "suprOMEGALUL Emote",
-          title: "Good One Dono"
-        },
-        {
-          clicked: false,
-          img: FourWeirdBuff,
-          alt: "4WeirdBuff Emote",
-          title: "\"DAAAPHNEE\""
-        },
-        {
-          clicked: false,
-          img: MYEYES,
-          alt: "MYEYES Emote",
-          title: "Wiffed Shatter"
-        },
-        {
-          clicked: false,
-          img: pepeCD,
-          alt: "pepeCD Emote",
-          title: "Doc Song Playing"
-        },
-        {
-          clicked: false,
-          img: peePoo,
-          alt: "peePoo Emote",
-          title: "Bathroom Break"
-        },
-        {
-          clicked: false,
-          img: borpaSpin,
-          alt: "borpaSpin Emote",
-          title: "\"Cum\""
-        },
-        {
-          clicked: false,
-          img: MTD,
-          alt: "MTD Emote",
-          title: "Main Tank Difference"
-        },
-        {
-          clicked: false,
-          img: suprWTF,
-          alt: "suprWTF Emote",
-          title: "WTF Dono"
-        },
-        {
-          clicked: false,
-          img: FourGitte,
-          alt: "4Gitte Emote",
-          title: "Unstoppable Brig"
-        },
-        {
-          clicked: false,
-          img: Wokeage,
-          alt: "Wokeage Emote",
-          title: "Variety Time"
-        }
-      ]
+    },
+    changeDifficulty(difficulty){
+      if(difficulty == "Easy"){
+        this.boardPieces = easyTiles
+      }else if(difficulty == "Impossible"){
+        this.boardPieces = impossibleTiles
+      }
     }
   }
 };
@@ -330,7 +164,7 @@ button{
   background: white;
   border: none;
   font-size: large;
-  box-shadow: 0 3px 4px #4f4f4f;
+  box-shadow: 0 3px 2px #6f6f6f;
 
   padding: 10px;
   margin: 10px;
@@ -340,7 +174,7 @@ button:hover{
   cursor: pointer;
 }
 button:active{
-  box-shadow: 0 1px 4px #4f4f4f;
+  box-shadow: 0 1px 4px #6f6f6f;
 }
 
 .tile{
