@@ -1,6 +1,7 @@
 <template>
   <select name="Difficulty" @change="$emit('selectDifficulty', $event.target.value)">
       <option value="Easy">Easy</option>
+      <option value="Hard">Hard</option>
       <option value="Impossible">Impossible</option>
   </select>
 </template>

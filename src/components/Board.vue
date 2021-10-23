@@ -33,7 +33,7 @@ export default {
   emits: ['bingo'],
   data(){
     return{
-      boardPieces: hardTiles
+      boardPieces: easyTiles
     }
   },
   created(){
@@ -151,6 +151,12 @@ export default {
           this.boardPieces = JSON.parse(localStorage.getItem('board-easy'))
         }else{
           this.boardPieces = easyTiles
+        }
+      }else if(difficulty == "Hard"){
+        if(localStorage.getItem('board-hard') && localStorage.getItem('board-hard')){
+          this.boardPieces = JSON.parse(localStorage.getItem('board-hard'))
+        }else{
+          this.boardPieces = hardTiles
         }
       }else if(difficulty == "Impossible"){
         if(localStorage.getItem('board-impossible') && localStorage.getItem('board-impossible')){
