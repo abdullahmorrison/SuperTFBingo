@@ -20,6 +20,7 @@ import Chip from './Chip.vue'
 import DifficultySelect from './DifficultySelect'
 
 import easyTiles from '../assets/board/data/easyTiles.js'
+import hardTiles from '../assets/board/data/hardTiles.js'
 import impossibleTiles from '../assets/board/data/impossibleTiles.js'
 
 export default {
@@ -32,7 +33,7 @@ export default {
   emits: ['bingo'],
   data(){
     return{
-      boardPieces: easyTiles
+      boardPieces: hardTiles
     }
   },
   created(){
