@@ -32,12 +32,19 @@ export default {
   emits: ['bingo'],
   data(){
     return{
-      boardPieces: impossibleTiles
+      boardPieces: easyTiles
     }
   },
   created(){
-    if(localStorage.getItem("Boardv3")){
-      this.boardPieces = JSON.parse(localStorage.getItem("Boardv3"))
+    if(localStorage.getItem('difficulty')){
+      let difficulty = JSON.parse(localStorage.getItem('board-impossible'))
+      if(difficulty == 'Easy'){
+        this.boardPieces = JSON.parse(localStorage.getItem("board-easy"))
+      }else if(difficulty == 'Impossible'){
+        this.boardPieces = JSON.parse(localStorage.getItem("board-impossible"))
+      }
+    }else{
+      localStorage.setItem("difficulty", 'Easy')
     }
   },
   updated(){
@@ -139,9 +146,17 @@ export default {
     },
     changeDifficulty(difficulty){
       if(difficulty == "Easy"){
-        this.boardPieces = easyTiles
+        if(localStorage.getItem('difficulty') && localStorage.getItem('board-easy')){
+          this.boardPieces = JSON.parse(localStorage.getItem('board-easy'))
+        }else{
+          this.boardPieces = easyTiles
+        }
       }else if(difficulty == "Impossible"){
-        this.boardPieces = impossibleTiles
+        if(localStorage.getItem('board-impossible') && localStorage.getItem('board-impossible')){
+          this.boardPieces = JSON.parse(localStorage.getItem('board-impossible'))
+        }else{
+          this.boardPieces = impossibleTiles
+        }
       }
     }
   }
