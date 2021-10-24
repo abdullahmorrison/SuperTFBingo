@@ -1,5 +1,5 @@
 import dmcaLogo from '../images/impossibleTiles/dmcaLogo.svg'
-import clbCover from '../images/impossibleTiles/clbCover.svg'
+import youtube from '../images/impossibleTiles/youtube.gif'
 import fourWeirdGym from '../images/impossibleTiles/fourWeirdGym.svg'
 import goldenKappa from '../images/impossibleTiles/goldenKappa.svg'
 import viewerIcon from '../images/impossibleTiles/viewerIcon.svg'
@@ -32,9 +32,9 @@ export default [
     },
     {
         "clicked": false,
-        "img": clbCover,
-        "alt": "Certified Lover Boy Album Cover",
-        "title": "Finishes Listening to CLB"
+        "img": youtube,
+        "alt": "GIF of NickMercs saying 'Youtube'",
+        "title": "Starts Streaming on YouTube"
     },
     {
         "clicked": false,
