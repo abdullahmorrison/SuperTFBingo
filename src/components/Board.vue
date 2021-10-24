@@ -33,24 +33,41 @@ export default {
   emits: ['bingo'],
   data(){
     return{
-      boardPieces: easyTiles
+      boardPieces: []
     }
   },
-  created(){
+  beforeMount(){
     if(localStorage.getItem('difficulty')){
-      let difficulty = JSON.parse(localStorage.getItem('board-impossible'))
-      if(difficulty == 'Easy'){
+      let difficulty = localStorage.getItem('difficulty')
+      if(difficulty == 'Easy' && localStorage.getItem('board-easy')){
         this.boardPieces = JSON.parse(localStorage.getItem("board-easy"))
-      }else if(difficulty == 'Impossible'){
+      }else if(difficulty == 'Hard' && localStorage.getItem('board-hard')){
+        this.boardPieces = JSON.parse(localStorage.getItem("board-hard"))
+      }else if(difficulty == 'Impossible'&& localStorage.getItem('board-impossible')){
         this.boardPieces = JSON.parse(localStorage.getItem("board-impossible"))
+      }else{
+        throw new Error("Code Error: Error Before Mouting")
       }
     }else{
+      this.boardPieces = easyTiles
+      localStorage.setItem("board-easy", JSON.stringify(easyTiles))
       localStorage.setItem("difficulty", 'Easy')
     }
   },
-  updated(){
+  updated(){//Dependant on the beforeMount adding difficulty to localStorage
     this.checkWin(5)
-    localStorage.setItem("Boardv3", JSON.stringify(this.boardPieces))
+
+    //updating the local storage
+    let difficulty = localStorage.getItem('difficulty')
+    if(difficulty == 'Easy' && localStorage.getItem('board-easy')){
+      localStorage.setItem("board-easy", JSON.stringify(this.boardPieces))
+    }else if(difficulty == 'Hard' && localStorage.getItem('board-hard')){
+      localStorage.setItem("board-hard", JSON.stringify(this.boardPieces))
+    }else if(difficulty == 'Impossible'&& localStorage.getItem('board-impossible')){
+      localStorage.setItem("board-impossible",  JSON.stringify(this.boardPieces))
+    }else{
+      throw new Error('Code Error: Error Updating the DOM')
+    }
   },
   methods: {
     boardClick() {//google analytics
@@ -135,7 +152,6 @@ export default {
           this.boardPieces[i].clicked=false;
       }
       this.randomizeBoard()
-      localStorage.setItem("Boardv3", JSON.stringify(this.boardPieces))
     },
     randomizeBoard(){
       for (let i = this.boardPieces.length - 1; i > 0; i--) {
@@ -146,23 +162,31 @@ export default {
       }
     },
     changeDifficulty(difficulty){
+      localStorage.setItem('difficulty', difficulty)
+      //if check if the board difficulty exists in local sorage, if not create it
       if(difficulty == "Easy"){
-        if(localStorage.getItem('difficulty') && localStorage.getItem('board-easy')){
+        console.log('easy')
+        if(localStorage.getItem('board-easy')){
           this.boardPieces = JSON.parse(localStorage.getItem('board-easy'))
         }else{
           this.boardPieces = easyTiles
+          localStorage.setItem("board-easy", JSON.stringify(easyTiles))
         }
       }else if(difficulty == "Hard"){
-        if(localStorage.getItem('board-hard') && localStorage.getItem('board-hard')){
+        console.log('hard')
+        if(localStorage.getItem('board-hard')){
           this.boardPieces = JSON.parse(localStorage.getItem('board-hard'))
         }else{
           this.boardPieces = hardTiles
+          localStorage.setItem("board-hard", JSON.stringify(hardTiles))
         }
       }else if(difficulty == "Impossible"){
-        if(localStorage.getItem('board-impossible') && localStorage.getItem('board-impossible')){
+        console.log('impossible')
+        if(localStorage.getItem('board-impossible')){
           this.boardPieces = JSON.parse(localStorage.getItem('board-impossible'))
         }else{
           this.boardPieces = impossibleTiles
+          localStorage.setItem("board-impossible", JSON.stringify(impossibleTiles))
         }
       }
     }

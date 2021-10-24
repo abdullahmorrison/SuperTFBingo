@@ -1,5 +1,5 @@
 <template>
-  <select name="Difficulty" @change="$emit('selectDifficulty', $event.target.value)">
+  <select name="Difficulty" v-model="difficulty" @change="difficulty = $event.target.value; $emit('selectDifficulty', $event.target.value)">
       <option value="Easy">Easy</option>
       <option value="Hard">Hard</option>
       <option value="Impossible">Impossible</option>
@@ -8,7 +8,17 @@
 
 <script>
 export default {
-    name: 'DifficultySelect'
+    name: 'DifficultySelect',
+    beforeMount(){
+      if(localStorage.getItem('difficulty')){
+        this.difficulty = localStorage.getItem('difficulty')
+      }
+    },
+    data(){
+      return{
+        difficulty: "Easy"
+      }
+    }
 }
 </script>
 
