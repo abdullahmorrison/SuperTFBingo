@@ -1,5 +1,5 @@
 <template>
-  <select name="Difficulty" v-model="difficulty" @change="difficulty = $event.target.value; $emit('selectDifficulty', $event.target.value)">
+  <select name="Difficulty" v-model="difficulty" @change="changeDifficulty($event.target.value)">
       <option value="Easy">Easy</option>
       <option value="Hard">Hard</option>
       <option value="Impossible">Impossible</option>
@@ -17,6 +17,17 @@ export default {
     data(){
       return{
         difficulty: "Easy"
+      }
+    },
+    methods: {
+      changeDifficulty(difficulty){
+          this.difficulty = difficulty
+          this.$emit('selectDifficulty', difficulty)
+          this.$gtag.event('change-difficulty-'+difficulty, {
+          'event_category' : 'Playing Game',
+          'event_label' : 'Added a chip to the board',
+          'value': 1
+        })
       }
     }
 }
